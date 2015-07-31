@@ -34,7 +34,21 @@ body {
   > div {
     height: 100%;
   }
-  &.is-active,
+  &.is-active {
+    @peak-width: 30px;
+    transform: translateX(@peak-width);
+    right: @peak-width;
+    .close-panel {
+      border-right: 1px solid @gray;
+      display: table;
+      position: absolute;
+      background-color: #e4e8ee;
+      top: 0;
+      bottom: 0;
+      left: -@peak-width;
+      width: @peak-width;
+    }
+  }
   &.is-extra-active {
     @peak-width: 30px;
     transform: translateX(@peak-width);
@@ -204,12 +218,16 @@ body {
 @media all and (min-width: @screen-medium) {
 }
 @media all and (min-width: @screen-large) {
+  .close-panel {
+    content: 'large'
+  }
 }
 @media all and (min-width: @screen-wide) {
 }
 @media all and (max-width: @screen-small-max) {
   @mobile-left-rail-width: 150px;
   @mobile-middle-width: 140px;
+  @mobile-peak-width: 30px;
   .main-panel {
     transform: translateX(@mobile-left-rail-width);
     right: @mobile-left-rail-width;
@@ -236,18 +254,33 @@ body {
   }
   .main-panel.is-active {
     .feed-item-list-container {
-      width: @mobile-middle-width;
+      /* width: @mobile-middle-width; */
     }
     .item-view-container {
-      display: block;
+      display: none;
     }
-    @mobile-peak-width: 30px;
     transform: translateX(@mobile-peak-width);
     right: @mobile-peak-width;
     .close-panel {
       left: -@mobile-peak-width;
       width: @mobile-peak-width;
     }
+  }
+  .main-panel.is-extra-active {
+    right: @mobile-peak-width - @mobile-middle-width;
+    .feed-item-list-container {
+      display: none;
+      width: @mobile-middle-width;
+    }
+    .item-view-container {
+      display: block;
+    }
+    transform: translateX(@mobile-peak-width - @mobile-middle-width);
+    .close-panel {
+      left: @mobile-middle-width - @mobile-peak-width;
+      width: @mobile-peak-width;
+    }
+
   }
 }
 @media all and (min-width: @screen-medium) and (max-width: @screen-medium-max) {

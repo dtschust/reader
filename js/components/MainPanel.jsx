@@ -15,8 +15,14 @@ let MainPanel = React.createClass({
   },
 
   decrementDepth: function (ev) {
+    // HACKS!
+    var inc = 1
+    var isDesktop = window.getComputedStyle(ev.currentTarget).getPropertyValue('content').indexOf('large') >= 0
+    if (isDesktop) {
+      inc++
+    }
     ev.stopPropagation()
-    FeedItemActions.adjustDepth(-1)
+    FeedItemActions.adjustDepth(-inc)
   },
 
   getInitialState: function () {
@@ -30,7 +36,6 @@ let MainPanel = React.createClass({
 
   render () {
     var depth = this.props.items.depth
-    console.log(depth)
     return (
       <div onClick={this.incrementDepth} className={classnames('main-panel', this.depthClassMap[depth])}>
         <div onClick={this.decrementDepth} className='close-panel'>
