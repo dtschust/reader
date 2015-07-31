@@ -14,7 +14,8 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?stage=1'},
             { test: /\.less$/, loader: 'style!css!less' },
             { test: /\.css$/, loader: 'style!css' },
-            { test: /\.json$/, loader: 'json'}
+            { test: /\.json$/, loader: 'json'},
+            { test: /\.txt$/, loader: 'raw'}
           ]
       },
     plugins: [

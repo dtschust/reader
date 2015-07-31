@@ -1,14 +1,18 @@
 import React from 'react'
 import moment from 'moment'
+import find from 'lodash.find'
 import sanitizeHtml from 'sanitize-html'
 
 let ItemView = React.createClass({
   propTypes: {
-    item: React.PropTypes.object
+    items: React.PropTypes.object
   },
 
   render () {
-    var item = this.props.item
+    var activeItemId = this.props.items.activeItemId
+    var item = find(this.props.items.feed_items, (item) => {
+      return activeItemId && item.feed_item_id === activeItemId
+    })
     var sanitizedBody
     var content
     var meta

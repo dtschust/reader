@@ -10,6 +10,7 @@ let SubscriptionList = React.createClass({
     setActiveFeed: React.PropTypes.func
   },
   render () {
+    // count={this.props.counts[feed.feed_id]}/
     return (
       <div className='subscription-list'>
         <div className='filters-container'>
@@ -24,7 +25,7 @@ let SubscriptionList = React.createClass({
               feed={feed}
               setActiveFeed={this.props.setActiveFeed}
               activeFeedId={this.props.activeFeedId}
-              count={this.props.counts[feed.feed_id]}/>
+              count={130}/>
           )
         })}
       </div>

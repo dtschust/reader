@@ -1,11 +1,11 @@
 import React from 'react'
 import moment from 'moment'
 import sanitizeHtml from 'sanitize-html'
+import FeedItemActions from '../actions/FeedItemActions'
 
 let FeedItem = React.createClass({
   propTypes: {
-    item: React.PropTypes.object,
-    setActiveItem: React.PropTypes.func
+    item: React.PropTypes.object
   },
 
   getInitialState: function () {
@@ -20,7 +20,7 @@ let FeedItem = React.createClass({
   },
 
   handleClick: function () {
-    this.props.setActiveItem(this.props.item.feed_item_id)
+    FeedItemActions.activeFeedItemChanged(this.props.item.feed_item_id)
   },
 
   render () {
