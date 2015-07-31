@@ -12,8 +12,14 @@ let FeedItemList = React.createClass({
       <div className='feed-item-list-container'>
         <div className='feed-item-list'>
         {this.props.items.feed_items.map((item) => {
+          if (!item.display) {
+            return false
+          }
           return (
-            <FeedItem key={item.feed_item_id} item={item} />
+            <FeedItem
+              key={item.feed_item_id}
+              item={item}
+              active={this.props.items.activeItemId === item.feed_item_id} />
           )
         })}
         </div>

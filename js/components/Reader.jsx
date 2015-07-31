@@ -3,12 +3,8 @@ import React from 'react'
 import FeedItemList from './FeedItemList'
 import SubscriptionList from './SubscriptionList'
 import ItemView from './ItemView'
-import sortBy from 'lodash.sortby'
 
 import AltContainer from 'alt/components/AltContainer'
-
-// var feedItems = require('../../fixtures/feed_items.json')
-var subscriptionList = require('../../fixtures/subscription_list.json')
 
 import FeedItemStore from '../stores/FeedItemStore'
 import FeedItemActions from '../actions/FeedItemActions'
@@ -17,15 +13,7 @@ require('../../styles/style')
 
 let Reader = React.createClass({
   getInitialState: function () {
-    return { activeItemId: null, activeFeedId: null }
-  },
-
-  setActiveItem: function (feed_item_id) {
-    this.setState({ activeItemId: feed_item_id})
-  },
-
-  setActiveFeed: function (feed_id) {
-    this.setState({ activeFeedId: feed_id})
+    return { activeFeedId: null }
   },
 
   calculateCounts: function () {
@@ -46,6 +34,9 @@ let Reader = React.createClass({
       console.log('fetching items!!')
       FeedItemActions.fetchFeedItems()
     }
+    if (!state.feeds.length) {
+      FeedItemActions.fetchSubscriptions()
+    }
   },
 
   componentWillUnmount: function () {
@@ -57,9 +48,7 @@ let Reader = React.createClass({
   },
 
   render () {
-    subscriptionList.feeds = sortBy(subscriptionList.feeds, 'title')
     var counts = this.calculateCounts()
-    var activeItem = null
     // var activeItem = find(feedItems.feed_items, (item) => {
     //   return this.state.activeItemId && item.feed_item_id === this.state.activeItemId
     // })
@@ -74,11 +63,7 @@ let Reader = React.createClass({
     return (
       <div>
         <AltContainer stores={ {items: FeedItemStore} }>
-          <SubscriptionList
-            feeds={subscriptionList.feeds}
-            setActiveFeed={this.setActiveFeed}
-            activeFeedId={this.state.activeFeedId}
-            counts={counts}/>
+          <SubscriptionList counts={counts}/>
           <FeedItemList />
           <ItemView/>
         </AltContainer>

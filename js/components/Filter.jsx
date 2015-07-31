@@ -1,14 +1,14 @@
 import React from 'react'
+import FeedItemActions from '../actions/FeedItemActions'
 
 let Filter = React.createClass({
   propTypes: {
     title: React.PropTypes.string,
-    setActiveFeed: React.PropTypes.func,
     count: React.PropTypes.number
   },
 
   activateSubscription: function () {
-    this.props.setActiveFeed(null)
+    FeedItemActions.activeFeedChanged(null)
   },
 
   render () {

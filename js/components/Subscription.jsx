@@ -1,16 +1,16 @@
 import React from 'react'
 import classnames from 'classnames'
+import FeedItemActions from '../actions/FeedItemActions'
 
 let Subscription = React.createClass({
   propTypes: {
     feed: React.PropTypes.object,
-    setActiveFeed: React.PropTypes.func,
     activeFeedId: React.PropTypes.number,
     count: React.PropTypes.number
   },
 
   activateSubscription: function () {
-    this.props.setActiveFeed(this.props.feed.feed_id)
+    FeedItemActions.activeFeedChanged(this.props.feed.feed_id)
   },
 
   render () {

@@ -2,10 +2,12 @@ import React from 'react'
 import moment from 'moment'
 import sanitizeHtml from 'sanitize-html'
 import FeedItemActions from '../actions/FeedItemActions'
+import classnames from 'classnames'
 
 let FeedItem = React.createClass({
   propTypes: {
-    item: React.PropTypes.object
+    item: React.PropTypes.object,
+    active: React.PropTypes.bool
   },
 
   getInitialState: function () {
@@ -33,7 +35,7 @@ let FeedItem = React.createClass({
       )
     }
     return (
-      <div className='feed-item-container' onClick={this.handleClick}>
+      <div className={classnames('feed-item-container', {'is-active': this.props.active})} onClick={this.handleClick}>
         <span className='feed-time'>about {moment(item.published_at * 1000).fromNow()}</span>
         <div className='feed-name'>{item.feed_name}</div>
         <span className='feed-title'>{item.title}</span>

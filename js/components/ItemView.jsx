@@ -21,17 +21,17 @@ let ItemView = React.createClass({
         <div className='item-body'> NO DATA STATE </div>
       )
     } else {
-      sanitizedBody = sanitizeHtml(item.body)
+      sanitizedBody = sanitizeHtml(item.body, {allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])})
       content = (
         <div className='item-body' dangerouslySetInnerHTML={{__html: sanitizedBody}}/>
       )
       meta = (
-        <div className='item-view-meta'>
+        <a className='item-view-meta' target='_blank' href={item.url}>
           <div className='feed-time'>{moment(item.published_at * 1000).calendar()}</div>
           <div className='feed-title'>{item.title}</div>
           <div className='feed-author'>{item.author}</div>
           <div className='feed-name'>{item.feed_name}</div>
-        </div>
+        </a>
       )
     }
     return (

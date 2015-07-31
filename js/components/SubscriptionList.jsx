@@ -4,28 +4,26 @@ import Filter from './Filter'
 
 let SubscriptionList = React.createClass({
   propTypes: {
-    feeds: React.PropTypes.array,
-    counts: React.PropTypes.object,
-    activeFeedId: React.PropTypes.number,
-    setActiveFeed: React.PropTypes.func
+    items: React.PropTypes.object
   },
   render () {
-    // count={this.props.counts[feed.feed_id]}/
+    var activeFeedId = this.props.items.activeFeedId
     return (
       <div className='subscription-list'>
         <div className='filters-container'>
-          <Filter title='Unread' setActiveFeed={this.props.setActiveFeed}/>
-          <Filter title='Starred' setActiveFeed={this.props.setActiveFeed}/>
-          <Filter title='All' setActiveFeed={this.props.setActiveFeed}/>
+          <Filter title='All'/>
         </div>
-        {this.props.feeds.map((feed) => {
+        {this.props.items.feeds.map((feed) => {
+          var count = this.props.items.counts[feed.feed_id]
+          if (!count) {
+            return false
+          }
           return (
             <Subscription
               key={feed.feed_id}
               feed={feed}
-              setActiveFeed={this.props.setActiveFeed}
-              activeFeedId={this.props.activeFeedId}
-              count={130}/>
+              activeFeedId={activeFeedId}
+              count={count}/>
           )
         })}
       </div>
