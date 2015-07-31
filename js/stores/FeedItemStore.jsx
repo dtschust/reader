@@ -16,6 +16,7 @@ class FeedItemStore {
     this.state = {
       feed_items: [],
       feeds: [],
+      feedsTimeStamp: 0,
       activeItemId: null,
       activeFeedId: null,
       counts: {}
@@ -56,10 +57,9 @@ class FeedItemStore {
 
     var feeds = sortByOrder(data.feeds, 'title')
     this.setState({
-      feeds: feeds
+      feeds: feeds,
+      feedsTimeStamp: new Date().getTime()
     })
-
-    console.log('Pulled in subscriptions!', feeds)
   }
   handleFeedItemsChanged (data) {
     if (data.result !== 'success') {
@@ -84,21 +84,18 @@ class FeedItemStore {
     }
     this.setState({
       feed_items: currentFeedItems,
-      counts: counts
+      counts: counts,
+      feedsTimeStamp: new Date().getTime()
     })
 
     this.filterActiveFeedItems()
-
-    console.log('Pulled in feed items!', currentFeedItems)
   }
 
   handleActiveFeedItemChanged (feed_item_id) {
-    console.log('updating active feed item id in the store!')
     this.setState({ activeItemId: feed_item_id})
   }
 
   handleActiveFeedChanged (feed_id) {
-    console.log('updating active feed id in the store!')
     this.setState({ activeFeedId: feed_id})
     this.filterActiveFeedItems()
   }

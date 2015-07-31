@@ -32,7 +32,6 @@ let Reader = React.createClass({
     FeedItemStore.listen(this.onFeedItemsChanged)
     var state = FeedItemStore.getState()
     if (!state.feed_items.length) {
-      console.log('fetching items!!')
       FeedItemActions.fetchFeedItems()
     }
     if (!state.feeds.length) {
@@ -45,22 +44,11 @@ let Reader = React.createClass({
   },
 
   onFeedItemsChanged: function () {
-    console.log('feed items changed!')
   },
 
   render () {
     var counts = this.calculateCounts()
-    // var activeItem = find(feedItems.feed_items, (item) => {
-    //   return this.state.activeItemId && item.feed_item_id === this.state.activeItemId
-    // })
-    // var feed_items = feedItems.feed_items
-    //
-    // if (this.state.activeFeedId) {
-    //   feed_items = feed_items.filter((item) => {
-    //     return item.feed_id === this.state.activeFeedId
-    //   })
-    // }
-    // items={feed_items}
+
     return (
       <div>
         <AltContainer stores={ {items: FeedItemStore} }>

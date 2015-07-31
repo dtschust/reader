@@ -10,15 +10,19 @@ let FeedItem = React.createClass({
     active: React.PropTypes.bool
   },
 
-  getInitialState: function () {
-    return { summary: false }
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return this.props.active !== nextProps.active ||
+           this.props.item.feed_item_id !== nextProps.item.feed_item_id
   },
-  componentDidMount: function () {
-    var summary = this.refs.feedBody.getDOMNode().innerText
-    if (summary.length === 0) {
-      summary = '-'
+
+  getInitialState: function () {
+    var sanitizedBody = sanitizeHtml(this.props.item.body)
+    var summary = document.createElement('div')
+    summary.innerHTML = sanitizedBody
+    summary = summary.innerText
+    return {
+      summary: summary
     }
-    this.setState({ summary: summary })
   },
 
   handleClick: function () {
@@ -26,21 +30,14 @@ let FeedItem = React.createClass({
   },
 
   render () {
+    // <div ref='feedBody' className='feed-body' dangerouslySetInnerHTML={{__html: this.state.sanitizedBody}} />
     var item = this.props.item
-    var summaryContainer = false
-    var sanitizedBody = sanitizeHtml(item.body)
-    if (this.state.summary) {
-      summaryContainer = (
-        <div className='feed-body-summary'>{this.state.summary}</div>
-      )
-    }
     return (
       <div className={classnames('feed-item-container', {'is-active': this.props.active})} onClick={this.handleClick}>
         <span className='feed-time'>about {moment(item.published_at * 1000).fromNow()}</span>
         <div className='feed-name'>{item.feed_name}</div>
         <span className='feed-title'>{item.title}</span>
-        <div ref='feedBody' className='feed-body' dangerouslySetInnerHTML={{__html: sanitizedBody}} />
-        {summaryContainer}
+        <div className='feed-body-summary'>{this.state.summary}</div>
       </div>
     )
   }

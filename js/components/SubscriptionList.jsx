@@ -6,6 +6,10 @@ let SubscriptionList = React.createClass({
   propTypes: {
     items: React.PropTypes.object
   },
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return this.props.items.feedsTimeStamp !== nextProps.items.feedsTimeStamp ||
+           this.props.items.activeFeedId !== nextProps.items.activeFeedId
+  },
   render () {
     var activeFeedId = this.props.items.activeFeedId
     return (

@@ -8,6 +8,10 @@ let ItemView = React.createClass({
     items: React.PropTypes.object
   },
 
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return this.props.items.activeItemId !== nextProps.items.activeItemId
+  },
+
   render () {
     var activeItemId = this.props.items.activeItemId
     var item = find(this.props.items.feed_items, (item) => {
