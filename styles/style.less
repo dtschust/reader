@@ -1,0 +1,136 @@
+@left-rail-width: 200px;
+@right-rail-width: 700px;
+@gray: #959595;
+body {
+  background-color: gray;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.feed-item-list-container {
+  background-color: #fff;
+  margin-left: @left-rail-width;
+  margin-right: @right-rail-width;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  .feed-item-list {
+    max-width: 768px;
+    margin: 0 auto;
+
+    .feed-item-container {
+      cursor: pointer;
+      border-bottom: 1px solid @gray;
+      margin: 10px;
+      padding: 10px;
+      .feed-name {
+        font-size: 12px;
+        color: @gray;
+        margin-bottom: 10px;
+      }
+      .feed-title {
+        font-weight: bold;
+      }
+      .feed-time {
+        font-size: 12px;
+        color: @gray;
+        float: right;
+      }
+
+      .feed-body {
+        display: none;
+      }
+      .feed-body-summary {
+        font-size: 12px;
+        margin: 10px 30px 0;
+        color: @gray;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+.item-view-container {
+  background-color: #fff;
+  width: @right-rail-width;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-left: 1px solid @gray;
+
+  .item-view-meta {
+    margin: 20px 0;
+    padding: 0 50px;
+    .feed-title {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .feed-time,
+    .feed-author,
+    .feed-name {
+      font-size: 12px;
+      color: @gray;
+    }
+  }
+  .item-view {
+    .item-body {
+      margin: 20px 0;
+      padding: 0 50px;
+      overflow: hidden;
+    }
+    p {
+      overflow: hidden;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+.subscription-list {
+  background-color: #e4e8ee;
+  width: @left-rail-width;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  .filters-container {
+    padding: 20px 0;
+    .subscription-container {
+      border: none;
+    }
+  }
+  .subscription-container {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    cursor: pointer;
+    .count {
+      display: table-cell;
+      width: 30px;
+      font-size: 12px;
+      color: @gray;
+      vertical-align: middle;
+    }
+    &.is-active {
+      background-color: #d9dde5;
+    }
+    .subscription-link {
+      display: table-cell;
+      width: @left-rail-width -50px;
+      padding: 10px;
+      cursor: pointer;
+      color: black;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
