@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import sanitizeHtml from 'sanitize-html'
 
 let FeedItem = React.createClass({
   propTypes: {
@@ -25,6 +26,7 @@ let FeedItem = React.createClass({
   render () {
     var item = this.props.item
     var summaryContainer = false
+    var sanitizedBody = sanitizeHtml(item.body)
     if (this.state.summary) {
       summaryContainer = (
         <div className='feed-body-summary'>{this.state.summary}</div>
@@ -35,7 +37,7 @@ let FeedItem = React.createClass({
         <span className='feed-time'>about {moment(item.published_at * 1000).fromNow()}</span>
         <div className='feed-name'>{item.feed_name}</div>
         <span className='feed-title'>{item.title}</span>
-        <div ref='feedBody' className='feed-body' dangerouslySetInnerHTML={{__html: item.body}} />
+        <div ref='feedBody' className='feed-body' dangerouslySetInnerHTML={{__html: sanitizedBody}} />
         {summaryContainer}
       </div>
     )

@@ -26,7 +26,7 @@ let Reader = React.createClass({
 
   calculateCounts: function () {
     var counts = {}
-    feedItems.feed_items.forEach( (feed) => {
+    feedItems.feed_items.forEach((feed) => {
       if (counts[feed.feed_id]) {
         counts[feed.feed_id]++
       } else {

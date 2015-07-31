@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import sanitizeHtml from 'sanitize-html'
 
 let ItemView = React.createClass({
   propTypes: {
@@ -8,6 +9,7 @@ let ItemView = React.createClass({
 
   render () {
     var item = this.props.item
+    var sanitizedBody
     var content
     var meta
     if (!item) {
@@ -15,8 +17,9 @@ let ItemView = React.createClass({
         <div className='item-body'> NO DATA STATE </div>
       )
     } else {
+      sanitizedBody = sanitizeHtml(item.body)
       content = (
-        <div className='item-body' dangerouslySetInnerHTML={{__html: item.body}}/>
+        <div className='item-body' dangerouslySetInnerHTML={{__html: sanitizedBody}}/>
       )
       meta = (
         <div className='item-view-meta'>
