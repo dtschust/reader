@@ -1,20 +1,50 @@
 @left-rail-width: 200px;
+@middle-width: 500px;
 @right-rail-width: 700px;
 @gray: #959595;
 body {
-  background-color: gray;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-.feed-item-list-container {
-  background-color: #fff;
-  margin-left: @left-rail-width;
-  margin-right: @right-rail-width;
+.main-panel {
   position: absolute;
-  height: 100%;
+  transform: translateX(@left-rail-width);
+  transition: 100ms linear;
   left: 0;
-  right: 0;
+  right: 200px;
   top: 0;
+  height: 100%;
+  background-color: #fff;
+  .close-panel {
+    display: none;
+    .back {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+  > div {
+    height: 100%;
+  }
+  &.is-active {
+    @peak-width: 30px;
+    transform: translateX(@peak-width);
+    right: @peak-width;
+    .close-panel {
+      border-right: 1px solid @gray;
+      display: table;
+      position: absolute;
+      background-color: #e4e8ee;
+      top: 0;
+      bottom: 0;
+      left: -@peak-width;
+      width: @peak-width;
+    }
+  }
+}
+.feed-item-list-container {
+  height: 100%;
+  width: @middle-width;
   overflow-x: hidden;
   overflow-y: scroll;
   .feed-item-list {
@@ -58,10 +88,10 @@ body {
 }
 .item-view-container {
   background-color: #fff;
-  width: @right-rail-width;
   position: absolute;
   right: 0;
   top: 0;
+  left: @middle-width;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -69,15 +99,11 @@ body {
 
   .item-view-meta {
     display: block;
-    margin: 20px 50px;
-    padding: 10px;
+    padding: 30px 60px;
     color: black;
     text-decoration: none;
-    border: 1px solid @gray;
-    border-radius: 5px;
-    &:hover {
-      background-color: #e4e8ee;
-    }
+    border-bottom: 1px solid @gray;
+    background-color: #e4e8ee;
     .feed-title {
       font-size: 32px;
       font-weight: bold;

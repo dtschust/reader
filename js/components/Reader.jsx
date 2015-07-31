@@ -3,6 +3,7 @@ import React from 'react'
 import FeedItemList from './FeedItemList'
 import SubscriptionList from './SubscriptionList'
 import ItemView from './ItemView'
+import MainPanel from './MainPanel'
 
 import AltContainer from 'alt/components/AltContainer'
 
@@ -64,8 +65,12 @@ let Reader = React.createClass({
       <div>
         <AltContainer stores={ {items: FeedItemStore} }>
           <SubscriptionList counts={counts}/>
-          <FeedItemList />
-          <ItemView/>
+          <MainPanel>
+            <AltContainer stores={ {items: FeedItemStore} }>
+              <FeedItemList />
+              <ItemView/>
+            </AltContainer>
+          </MainPanel>
         </AltContainer>
       </div>
     )

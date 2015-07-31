@@ -16,12 +16,18 @@ let ItemView = React.createClass({
     var sanitizedBody
     var content
     var meta
+    var allowedTags
     if (!item) {
       content = (
         <div className='item-body'> NO DATA STATE </div>
       )
     } else {
-      sanitizedBody = sanitizeHtml(item.body, {allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])})
+      allowedTags = sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+
+      sanitizedBody = sanitizeHtml(item.body, {allowedTags: allowedTags})
+
+      // terrible hack to fix NW rss feed data
+      sanitizedBody = sanitizedBody.replace(/&lt;br\/&gt;&lt;br\/&gt;/g, '')
       content = (
         <div className='item-body' dangerouslySetInnerHTML={{__html: sanitizedBody}}/>
       )
