@@ -1,7 +1,15 @@
 @left-rail-width: 200px;
 @middle-width: 500px;
-@right-rail-width: 700px;
+
 @gray: #959595;
+
+@screen-small-max : 767px;
+@screen-medium : 768px;
+@screen-medium-max : 1023px;
+@screen-large : 1024px;
+@screen-large-max : 1199px;
+@screen-wide : 1200px;
+
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
@@ -11,7 +19,7 @@ body {
   transform: translateX(@left-rail-width);
   transition: transform 100ms linear;
   left: 0;
-  right: 200px;
+  right: @left-rail-width;
   top: 0;
   height: 100%;
   background-color: #fff;
@@ -26,7 +34,8 @@ body {
   > div {
     height: 100%;
   }
-  &.is-active {
+  &.is-active,
+  &.is-extra-active {
     @peak-width: 30px;
     transform: translateX(@peak-width);
     right: @peak-width;
@@ -190,5 +199,81 @@ body {
       white-space: nowrap;
       overflow: hidden;
     }
+  }
+}
+@media all and (min-width: @screen-medium) {
+}
+@media all and (min-width: @screen-large) {
+}
+@media all and (min-width: @screen-wide) {
+}
+@media all and (max-width: @screen-small-max) {
+  @mobile-left-rail-width: 150px;
+  @mobile-middle-width: 140px;
+  .main-panel {
+    transform: translateX(@mobile-left-rail-width);
+    right: @mobile-left-rail-width;
+  }
+  .feed-item-list-container {
+    width: auto;
+    .feed-item-list {
+      .feed-item-container {
+        .feed-body-summary {
+          margin: 10px 0 0;
+        }
+      }
+    }
+  }
+  .item-view-container {
+    display: none;
+    left: @mobile-middle-width;
+  }
+  .subscription-list {
+    width: @mobile-left-rail-width - 1px;
+  }
+  .subscription-link {
+    width: @mobile-left-rail-width - 50px;
+  }
+  .main-panel.is-active {
+    .feed-item-list-container {
+      width: @mobile-middle-width;
+    }
+    .item-view-container {
+      display: block;
+    }
+    @mobile-peak-width: 30px;
+    transform: translateX(@mobile-peak-width);
+    right: @mobile-peak-width;
+    .close-panel {
+      left: -@mobile-peak-width;
+      width: @mobile-peak-width;
+    }
+  }
+}
+@media all and (min-width: @screen-medium) and (max-width: @screen-medium-max) {
+  @tablet-left-rail-width: 200px;
+  @tablet-middle-width: 300px;
+  .main-panel {
+    transform: translateX(@tablet-left-rail-width);
+    right: @tablet-left-rail-width;
+  }
+  .feed-item-list-container {
+    width: @tablet-middle-width;
+    .feed-item-list {
+      .feed-item-container {
+        .feed-body-summary {
+          margin: 10px 0 0;
+        }
+      }
+    }
+  }
+  .item-view-container {
+    left: @tablet-middle-width;
+  }
+  .subscription-list {
+    width: @tablet-left-rail-width - 1px;
+  }
+  .subscription-link {
+    width: @tablet-left-rail-width - 50px;
   }
 }

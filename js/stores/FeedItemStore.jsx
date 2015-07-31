@@ -10,7 +10,8 @@ class FeedItemStore {
       handleFeedItemsFetchFailed: FeedItemActions.FEED_ITEMS_FETCH_FAILED,
       handleActiveFeedItemChanged: FeedItemActions.ACTIVE_FEED_ITEM_CHANGED,
       handleActiveFeedChanged: FeedItemActions.ACTIVE_FEED_CHANGED,
-      handleSubscriptionsChanged: FeedItemActions.SUBSCRIPTIONS_CHANGED
+      handleSubscriptionsChanged: FeedItemActions.SUBSCRIPTIONS_CHANGED,
+      handleDepthAdjusted: FeedItemActions.ADJUST_DEPTH
     })
 
     this.state = {
@@ -19,8 +20,19 @@ class FeedItemStore {
       feedsTimeStamp: 0,
       activeItemId: null,
       activeFeedId: null,
+      depth: 0,
       counts: {}
     }
+  }
+
+  handleDepthAdjusted (inc) {
+    var newValue = this.state.depth + inc
+    if (newValue < 0) {
+      newValue = 0
+    } else if (newValue > 2) {
+      newValue = 2
+    }
+    this.setState({ depth: newValue})
   }
 
   calculateCounts (feed_items) {

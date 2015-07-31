@@ -9,6 +9,7 @@ class FeedItemActions {
       'subscriptionsChanged',
       'feedItemsFetchFailed',
       'activeFeedItemChanged',
+      'adjustDepth',
       'activeFeedChanged')
 
   }
