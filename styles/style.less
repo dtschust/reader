@@ -9,7 +9,7 @@ body {
 .main-panel {
   position: absolute;
   transform: translateX(@left-rail-width);
-  transition: 100ms linear;
+  transition: transform 100ms linear;
   left: 0;
   right: 200px;
   top: 0;
@@ -129,6 +129,24 @@ body {
       height: auto;
     }
   }
+}
+
+.item-view-enter {
+  transform: translateY(100vh);
+  transition: transform 200ms linear;
+}
+
+.item-view-enter-active {
+  transform: translateY(0);
+}
+
+.item-view-leave {
+  transform: translateY(0);
+  transition: transform 200ms linear;
+}
+
+.item-view-leave-active {
+  transform: translateY(-100vh);
 }
 .subscription-list {
   border-right: 1px solid @gray;

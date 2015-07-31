@@ -2,7 +2,7 @@ import React from 'react'
 
 import FeedItemList from './FeedItemList'
 import SubscriptionList from './SubscriptionList'
-import ItemView from './ItemView'
+import ItemViewContainer from './ItemViewContainer'
 import MainPanel from './MainPanel'
 
 import AltContainer from 'alt/components/AltContainer'
@@ -17,17 +17,6 @@ let Reader = React.createClass({
     return { activeFeedId: null }
   },
 
-  calculateCounts: function () {
-    // var counts = {}
-    // feedItems.feed_items.forEach((feed) => {
-    //   if (counts[feed.feed_id]) {
-    //     counts[feed.feed_id]++
-    //   } else {
-    //     counts[feed.feed_id] = 1
-    //   }
-    // })
-    // return counts
-  },
   componentDidMount: function () {
     FeedItemStore.listen(this.onFeedItemsChanged)
     var state = FeedItemStore.getState()
@@ -47,16 +36,14 @@ let Reader = React.createClass({
   },
 
   render () {
-    var counts = this.calculateCounts()
-
     return (
       <div>
         <AltContainer stores={ {items: FeedItemStore} }>
-          <SubscriptionList counts={counts}/>
+          <SubscriptionList/>
           <MainPanel>
             <AltContainer stores={ {items: FeedItemStore} }>
               <FeedItemList />
-              <ItemView/>
+              <ItemViewContainer/>
             </AltContainer>
           </MainPanel>
         </AltContainer>
