@@ -9,7 +9,7 @@ let App = React.createClass({
   render () {
     return (
       <div className='main-container'>
-        <div style={{display: 'none'}} className='nav'>
+        <div className='nav'>
           <Link to='app'>Home</Link>
           <Link to='reader'>Reader</Link>
           hello

@@ -33,12 +33,12 @@ let FeedItem = React.createClass({
     // <div ref='feedBody' className='feed-body' dangerouslySetInnerHTML={{__html: this.state.sanitizedBody}} />
     var item = this.props.item
     return (
-      <div className={classnames('feed-item-container', {'is-active': this.props.active})} onClick={this.handleClick}>
+      <a href='javascript:void(0);' className={classnames('feed-item-container', {'is-active': this.props.active})} onClick={this.handleClick}>
         <span className='feed-time'>about {moment(item.published_at * 1000).fromNow()}</span>
         <div className='feed-name'>{item.feed_name}</div>
         <span className='feed-title'>{item.title}</span>
         <div className='feed-body-summary'>{this.state.summary}</div>
-      </div>
+      </a>
     )
   }
 })

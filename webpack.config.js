@@ -12,8 +12,8 @@ module.exports = {
         loaders: [
             { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
             { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?stage=1'},
-            { test: /\.less$/, loader: 'style!css!less' },
-            { test: /\.css$/, loader: 'style!css' },
+            { test: /\.less$/, loader: 'style!css!less!autoprefixer' },
+            { test: /\.css$/, loader: 'style!css!autoprefixer' },
             { test: /\.json$/, loader: 'json'},
             { test: /\.txt$/, loader: 'raw'}
           ]

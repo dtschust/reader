@@ -39,7 +39,7 @@ let MainPanel = React.createClass({
     return (
       <div onClick={this.incrementDepth} className={classnames('main-panel', this.depthClassMap[depth])}>
         <div onClick={this.decrementDepth} className='close-panel'>
-          <div className='back' dangerouslySetInnerHTML={{__html: '<'}} />
+          <a href='javascript:void(0);' className='back' dangerouslySetInnerHTML={{__html: '<'}} />
         </div>
           {this.props.children}
       </div>
