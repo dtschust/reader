@@ -14,7 +14,7 @@ class FeedItemActions {
 
   }
   fetchFeedItems (offset) {
-    var url = 'http://localhost:8000/api/v2/feed_items/list?access_token=' + accessToken
+    var url = 'http://fw-proxy.herokuapp.com/api/v2/feed_items/list?access_token=' + accessToken
     if (offset) {
       url += '&offset=' + offset
     }
@@ -36,7 +36,7 @@ class FeedItemActions {
       })
   }
   fetchSubscriptions () {
-    var url = 'http://localhost:8000/api/v2/subscriptions/list?access_token=' + accessToken
+    var url = 'http://fw-proxy.herokuapp.com/api/v2/subscriptions/list?access_token=' + accessToken
     nets({url: url, encoding: undefined},
       (err, res, body) => {
         if (err) {

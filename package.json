@@ -18,7 +18,7 @@
     "json-loader": "~0.5.2"
   },
   "scripts": {
-    "start": "forever proxy.js & webpack-dev-server --hot --inline --progress --colors",
+    "start": "webpack-dev-server --hot --inline --progress --colors",
     "build": "webpack --progress --colors",
     "lint": "standard"
   },
@@ -45,12 +45,9 @@
     "lodash.sortby": "~3.1.5",
     "sanitize-html": "~1.7.2",
     "alt": "~0.17.1",
-    "http-proxy": "~1.11.1",
-    "express": "~4.13.1",
     "nets": "~3.1.0",
     "raw-loader": "~0.5.1",
     "lodash.sortbyorder": "~3.4.4",
-    "forever": "~0.15.1",
     "autoprefixer-loader": "~2.0.0"
   }
 }
