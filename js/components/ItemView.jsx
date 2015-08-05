@@ -30,8 +30,6 @@ let ItemView = React.createClass({
 
       sanitizedBody = sanitizeHtml(item.body, {allowedTags: allowedTags})
 
-      // terrible hack to fix NW rss feed data
-      sanitizedBody = sanitizedBody.replace(/&lt;br\/&gt;&lt;br\/&gt;/g, '')
       content = (
         <div className='item-body' dangerouslySetInnerHTML={{__html: sanitizedBody}}/>
       )
